@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-    float bulletSpeed = 500;
-    float bombSpeed = 100;
+    public float bulletSpeed = 500;
+    public float bombSpeed = 100;
     
+    [HideInInspector]
     public Transform bulletFirePosition;
+    [HideInInspector]
     public Rigidbody2D bulletPrefab;
 
+    [HideInInspector]
     public Transform bombFirePosition;
+    [HideInInspector]
     public Rigidbody2D bombPrefab;
 
     bool canFire = true;

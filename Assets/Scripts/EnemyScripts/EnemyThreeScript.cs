@@ -7,15 +7,13 @@ public class EnemyThreeScript : EnemyBaseBehavour
 
     void Start()
     {
-        positionToSpawnY = 0.19f;
-        SetCorrectPosition();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
-        StartCoroutine(waitBeforeAttacking());
-    }
+        float positionToSpawnX = 35;
+        float positionToSpawnY = -4.85f;
 
-    private IEnumerator waitBeforeAttacking()
-    {
-        yield return new WaitForSeconds(2.25f);
-        FireWaveOne();
+        MoveToPosition(positionToSpawnX, positionToSpawnY);
+        StartCoroutine(MoveIntoView());
     }
 }

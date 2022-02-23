@@ -6,20 +6,18 @@ public class EnemyOneScript : EnemyBaseBehavour
 {
 
     private Vector2 attackPosition;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
-        SetCorrectPosition(); 
 
-        StartCoroutine(waitBeforeAttacking());
-    }
+        float positionToSpawnX = 35;
+        float positionToSpawnY = -2f;
 
-    private IEnumerator waitBeforeAttacking()
-    {
-        yield return new WaitForSeconds(2.25f);
-        FireWaveOne();
+        MoveToPosition(positionToSpawnX, positionToSpawnY);
+        StartCoroutine(MoveIntoView());
     }
     
 }

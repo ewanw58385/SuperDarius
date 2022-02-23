@@ -25,12 +25,14 @@ public class VirtualJoystick : MonoBehaviour
     public Transform joystickHandle;
     public Camera cam;
 
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
+    private GameObject player;
     private float screenWidth;
 
     void Start()
     {
         GameObject player = GameObject.Find("Player");
+
         rb = player.GetComponent<Rigidbody2D>(); //get component of player 
 
         screenWidth = Screen.width; 
@@ -40,10 +42,13 @@ public class VirtualJoystick : MonoBehaviour
 
     void FixedUpdate()
     {
+        rb.velocity = Vector2.zero;
+
         ManageTouches();
         PreventOutOfBoundsTouch();
 
         //Debug.Log("is grounded = " + GroundCheck());
+
     }
 
     private void ManageTouches()
@@ -115,13 +120,14 @@ public class VirtualJoystick : MonoBehaviour
 
         while (i < Input.touchCount) //loops for every touch
         {
-                Touch touch = Input.GetTouch(0); //instantiates new touch (for each touch)
+            Touch touch = Input.GetTouch(0); //instantiates new touch (for each touch)
 
-                        if (touch.position.x > screenWidth / 2) //if touch moves out of bounds 
-                        {
-                            Debug.Log("touch moved out of bounds");
-                            rb.velocity = Vector2.zero;
-                        }
+            if (touch.position.x > screenWidth / 2) //if touch moves out of bounds 
+            {
+                Debug.Log("touch moved out of bounds");
+                rb.velocity = Vector2.zero;
+            }
+
             i++;
         }
     }
@@ -129,6 +135,6 @@ public class VirtualJoystick : MonoBehaviour
 
     public void MoveCharacter(Vector2 directionToMove)
     {
-        rb.MovePosition(rb.position + directionToMove * moveSpeed * Time.fixedDeltaTime);
+        rb.velocity = new Vector3(directionToMove.x * moveSpeed, directionToMove.y * moveSpeed, 0);
     }
 }

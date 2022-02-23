@@ -17,13 +17,13 @@ public class SpawnEnemies : MonoBehaviour
             GameObject enemyInstanceTwo;
             GameObject enemyInstanceThree;
 
-            enemyInstanceOne = Instantiate(enemyPrefab, enemySpawnPos.transform.position, enemySpawnPos.transform.rotation) as GameObject;
+            enemyInstanceOne = Instantiate(enemyPrefab) as GameObject;
             enemyInstanceOne.AddComponent<EnemyOneScript>();
 
-            enemyInstanceTwo = Instantiate(enemyPrefab, enemySpawnPos.transform.position, enemySpawnPos.transform.rotation) as GameObject;
+            enemyInstanceTwo = Instantiate(enemyPrefab) as GameObject;
             enemyInstanceTwo.AddComponent<EnemyTwoScript>();
 
-            enemyInstanceThree = Instantiate(enemyPrefab, enemySpawnPos.transform.position, enemySpawnPos.transform.rotation) as GameObject;
+            enemyInstanceThree = Instantiate(enemyPrefab) as GameObject;
             enemyInstanceThree.AddComponent<EnemyThreeScript>();
         }
     }
