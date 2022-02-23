@@ -25,6 +25,8 @@ public class SpawnEnemies : MonoBehaviour
 
             enemyInstanceThree = Instantiate(enemyPrefab) as GameObject;
             enemyInstanceThree.AddComponent<EnemyThreeScript>();
+
+            Destroy(gameObject);
         }
     }
 }
